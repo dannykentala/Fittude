@@ -1,0 +1,6 @@
+@Fittude_HostAddress = http://localhost:5200
+
+GET {{Fittude_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
