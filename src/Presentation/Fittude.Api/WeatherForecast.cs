@@ -1,4 +1,4 @@
-namespace Fittude;
+namespace Fittude.Api;
 
 public class WeatherForecast
 {

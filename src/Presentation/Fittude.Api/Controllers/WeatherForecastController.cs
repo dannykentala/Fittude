@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Fittude.Controllers;
+namespace Fittude.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
