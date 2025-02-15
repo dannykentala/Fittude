@@ -2,7 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\ApplicationCore\Fittude.Application\Fittude.Application.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Fittude.Infrastructure\Fittude.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Fittude.Persistence\Fittude.Persistence.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
