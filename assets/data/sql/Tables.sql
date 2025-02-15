@@ -1,38 +1,66 @@
-
-SELECT * FROM WeekDays
-
-CREATE TABLE WeekDays(
-  Id SERIAL PRIMARY KEY,
-  Name VARCHAR(40) NOT NULL
+## Enums
+CREATE TYPE Gender AS ENUM(
+  'male',
+  'female'
 );
 
-CREATE TABLE EatTime(
-  Id SERIAL PRIMARY,
-  Name VARCHAR(40) NOT NULL
+CREATE TYPE WeekDay AS ENUM(
+  'monday',
+  'tuesday',
+  'wednesday',
+  'thursday',
+  'friday',
+  'saturday',
+  'sunday'
+);
+
+CREATE TYPE EatTime AS ENUM(
+  'preTraining',
+  'breakfast',
+  'lunch',
+  'dinner'
+);
+
+CREATE TYPE Preparation AS ENUM(
+  'base',
+  'cooked'
+);
+
+## Tables
+CREATE TABLE Users(
+  Id SERIAL PRIMARY KEY,
+  Email VARCHAR(125) UNIQUE,
+  Username VARCHAR(90) UNIQUE,
+  Password VARCHAR(255)
+);
+
+CREATE TABLE UserFitness(
+  Id SERIAL PRIMARY KEY,
+  UserId INT UNIQUE,
+  BirthDay DATE,
+  Heigth FLOAT,
+  Weigth FLOAT,
+  Gender GENDER,
+  FOREIGN KEY (UserId) REFERENCES Users(Id)
 );
 
 CREATE TABLE Foods(
   Id SERIAL PRIMARY KEY,
   Name VARCHAR(125) UNIQUE NOT NULL,
-  Preparation ENUM('Base', 'Cooked') DEFAULT 'Base',
-  Calories INT(25),
-  Proteins INT(15),
-  Carbohydrates INT(15),
-  Fibers INT(15)
+  Preparation PREPARATION,
+  Calories FLOAT,
+  Proteins FLOAT,
+  Carbohydrates FLOAT,
+  Fibers FLOAT
 );
 
-CREATE TABLE FoodPlan(
-  PortionAmount INT(11),
-  WeekDayId INT,
-  EatTimeId INT,
+CREATE TABLE FoodPlans(
+  Id INT,
+  UserId INT,
   FoodId INT,
-  FOREIGN KEY (WeekDayId) REFERENCES WeekDays(Id),
-  FOREIGN KEY (EatTimeId) REFERENCES EatTime(Id),
+  WeekDay WEEKDAY,
+  EatTime EATTIME,
+  PortionAmount FLOAT,
+  FOREIGN KEY (UserId) REFERENCES Users(Id),
   FOREIGN KEY (FoodId) REFERENCES Foods(Id)
 );
-
-CREATE DATABASE Fittude;
-
-SET FOREIGN_KEY_CHECKS=0;
-DROP TABLE `FoodPlan`;
-TRUNCATE Table `FoodPlan`;
